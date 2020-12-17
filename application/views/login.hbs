@@ -1,10 +1,10 @@
 <header style="font-size:1.7vw">Login Here</header>
-<form>
+<form method="POST" action="/users/login" enctype="application/x-www-form-urlencoded">
     <label id="normal">Username:</label>
-    <input type=text />
+    <input type="text" id="username" required name="username" />
     <br />
     <label id="normal">Password:</label>
-    <input type="password" />
+    <input type="password" id="passwd" required name="password" />
     <br />
     <button type="submit">Submit</button>
 </form>

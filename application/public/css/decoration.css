@@ -8,11 +8,30 @@ header {
     margin-bottom:12px;
 }
 
+nav {
+    text-align: center;
+}
+
+h2 {
+    color: grey;
+    text-align: center;
+    width: 350px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    margin-bottom:12px; 
+    font-size: 26px;
+}
+
 body {
     border: 2px solid grey;
     width: 360px;
     padding:15px;
     margin:0 auto;
+}
+
+footer {
+    background-color:lightgrey;
+    text-align: center;
 }
 
 form {
@@ -83,5 +102,10 @@ button {
 button:hover {
     color: black;
     background-color: lightblue;
+}
+
+#main-header {
+    font:40;
+    text-align: center;
 }
 

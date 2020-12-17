@@ -2,11 +2,11 @@ const mysql = require('mysql2');
 
 const pool = mysql.createPool({
     connectionLimit: 50,
-    host: 'localhost',
-    user: 'yunhaowang',
-    password: '1234',
-    database: 'csc317db',
-    debug: true,
+    host: "localhost",
+    user: "yunhaowang",
+    password: "1234",
+    database: "csc317db",
+    debug: false,
 });
 
 const promisePool = pool.promise();
