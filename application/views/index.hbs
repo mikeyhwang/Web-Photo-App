@@ -1,2 +1,5 @@
-<h1>Home</h1>
-<h2>Hello world, I am {{name}}</h2>
+<div id="posts">
+    {{#each results}}
+        {{> card this}}
+    {{/each}}
+</div>

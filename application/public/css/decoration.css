@@ -6,10 +6,49 @@ header {
     font-family: Arial, Helvetica, sans-serif;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     margin-bottom:12px;
+    margin-top:5px;
+}
+
+.card {
+    background-color:grey;
+    font-family: Arial, Helvetica, sans-serif;
+    height: 300px;
+    
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size:13px;
+    font-weight: bold;
+}
+
+#posts {
+    grid-area: content;
+    display: grid;
+    gap: 0.2rem, 0.2rem;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-auto-columns: 1fr 1fr 1fr 1fr;
+    grid-auto-rows: 1fr;
+}
+
+#search-bar {
+    width: 78%
+}
+
+#search-button {
+    width: 90px;
+    margin:0;
+    padding:0;
 }
 
 nav {
     text-align: center;
+    background-color:grey;
 }
 
 h2 {
@@ -24,7 +63,7 @@ h2 {
 
 body {
     border: 2px solid grey;
-    width: 360px;
+    width: 95%;
     padding:15px;
     margin:0 auto;
 }
@@ -32,12 +71,16 @@ body {
 footer {
     background-color:lightgrey;
     text-align: center;
+    margin:0;
 }
 
 form {
     font-size: 1em;
     border-radius: 1em;
     font-family: sans-serif;
+    justify-content: center;
+    align-items: center;
+
 }
 
 #normal, button {
@@ -99,7 +142,7 @@ button {
     box-shadow: 3px 3px 3px lightgrey;
 }
 
-#home-button, #login-button, #post-button {
+#anchor-buttons, #home-button, #login-button, #post-button {
     border:1px solid black;
     color: black;
     background-color: lightgrey;
@@ -115,8 +158,14 @@ button:hover {
 }
 
 #main-header {
-    font:40;
-    text-align: center;
+    font-size:50px;
+    width: 100%;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(206, 203, 203);
+    margin:0;
 }
 
 #flash-message {
@@ -124,6 +173,7 @@ button:hover {
     left: 50%;
     top: 15%;   
     transform:translate(-50%, 0);
+    z-index: 9999;
 }
 
 #flash-message div {

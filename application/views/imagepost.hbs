@@ -1,18 +1,25 @@
-<header style="font-size:1.7vw">Which Image?</header>
-<form>
-    <label id="normal">Post Title:</label>
-    <input type="text" />
-    <br />
-    <label id="normal">Post Author:</label>
-    <input type="text" />
-    <br />
-    <label id="normal">Post Creation Time:</label>
-    <input type="time" id="time" />
-    <input type="date" id="time" />
-    <br />
-    <label id="normal">Image Name:</label>
-    <input type="text" />
-    <br />
-    <button type="submit">Submit</button>
-    <br />
-</form>
+<div id="post-container">
+    <img id="image-post-image" src="/{{currentPost.photopath}}">
+    <div>
+        <div>
+            <header id="image-title">
+                <h2 id="image-title-text">{{currentPost.title}}</h2>
+            </header>
+            <div id="image-author" class="image-info">{{currentPost.username}}</div>
+            <div id="image-date" class="image-info">{{currentPost.created}}</div>
+            <div id="image-desc" class="image-info">{{currentPost.description}}</div>
+        </div>
+        <div id="messages">
+            <header id="comment-title">
+                <h2>Comments</h2>
+            </header>
+            <div id="message-list">
+
+            </div>
+            <div id="comment-box">
+                <textarea id="comments"></textarea>
+                <i id="comment-button" style="text-align: center;"></i>
+            </div>
+        </div>
+    </div>
+</div>
