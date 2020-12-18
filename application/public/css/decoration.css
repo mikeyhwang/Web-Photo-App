@@ -99,6 +99,16 @@ button {
     box-shadow: 3px 3px 3px lightgrey;
 }
 
+#home-button, #login-button, #post-button {
+    border:1px solid black;
+    color: black;
+    background-color: lightgrey;
+    margin-top: 7px;
+    padding:5px;
+    border-radius: 0.4rem;
+    box-shadow: 3px 3px 3px lightgrey;
+}
+
 button:hover {
     color: black;
     background-color: lightblue;
@@ -109,3 +119,21 @@ button:hover {
     text-align: center;
 }
 
+#flash-message {
+    position: fixed;
+    left: 50%;
+    top: 15%;   
+    transform:translate(-50%, 0);
+}
+
+#flash-message div {
+    text-align: center;
+}
+
+.alert-success {
+    background-color:rgb(76, 231, 76);
+}
+
+.alert-danger {
+    background-color:rgb(221, 142, 142);
+}

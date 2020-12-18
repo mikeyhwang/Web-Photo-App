@@ -1,16 +1,13 @@
 <header style="font-size:1.7vw">Post Your Image</header>
-<form>
+<form method="POST" enctype="multipart/form-data" action='/posts/createPost'>
     <label id="normal">Title:</label>
-    <input type="text" />
+    <input type="text" required name="title"/>
     <br />
     <label id="normal">Description:</label>
-    <input type="text" />
+    <input type="text" required name="description"/>
     <br />
-    <label id="normal">Image Link:</label>
-    <input type="text" />
-    <br />
-    <label id="normal">OR Image File:</label>
-    <input type="file" id="fileinput" accept="image/*" />
+    <label id="normal">Image File:</label>
+    <input type="file" id="fileinput" accept="image/*" required name="uploadImage" />
     <br />
     <input type="checkbox" id="Policy" required />
     <label for="Policy" id="checkmark">Accept our </label>

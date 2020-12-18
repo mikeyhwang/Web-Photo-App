@@ -3,13 +3,31 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="/public/css/decoration.css">
-        <script defer src="../js/validation.js"></script>
+        <script defer src="/public/js/validation.js"></script>
         <title>{{title}}</title>
     </head>
     <body>
         {{> header}}
         {{> nav}}
+        {{#if (emptyObject messages)}}
+        {{> flashmessage}}
+        {{/if}}
         {{{body}}}
         {{> footer}}
     </body>
+    {{#if logged}}
+        <script>
+            let ele = document.getElementById('login-button');
+            if (ele) {
+                ele.onclick = (even) => {
+                    fetch('/users/logout', {
+                        method:"POST"
+                    })
+                    .then((data => {
+                        location.replace('/');
+                    }));
+                }
+            }
+        </script>
+    {{/if}}
 </html>

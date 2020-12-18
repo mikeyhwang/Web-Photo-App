@@ -3,11 +3,7 @@ var router = express.Router();
 var db = require('../config/database');
 const { successPrint, errorPrint } = require('../helpers/debug/debugprinters');
 const UserError = require('../helpers/error/UserError');
-
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+var bcrypt = require('bcrypt');
 
 router.post('/register', (req, res, next) => {
   let username = req.body.username;
@@ -24,15 +20,20 @@ router.post('/register', (req, res, next) => {
   })
   .then(([results, fields]) => {
     if (results && results.length == 0) {
-      let baseSQL = "INSERT INTO users(username,email,password,created) VALUES (?,?,?,now());";
+      return bcrypt.hash(password, 15);
       return db.execute(baseSQL, [username, email, password]);
     } else {
       throw new UserError("Registration Failed: Email already exists","/registration",200);
     }
   })
+  .then((hashedPassword) => {
+    let baseSQL = "INSERT INTO users(username,email,password,created) VALUES (?,?,?,now());";
+    return db.execute(baseSQL, [username, email, hashedPassword]);
+  })
   .then(([results, fields]) => {
     if(results && results.affectedRows == 1) {
       successPrint("User.js --> user was created");
+      req.flash('success', 'User account has been made!');
       res.redirect('/login');
     }
     else {
@@ -43,6 +44,7 @@ router.post('/register', (req, res, next) => {
     errorPrint("user could not be made", err);
     if (err instanceof UserError) {
       errorPrint(err.getMessage());
+      req.flash('error', err.getMessage());
       res.status(err.getStatus());
       res.redirect(err.getRedirectURL());
     } else {
@@ -55,14 +57,26 @@ router.post('/login', (req, res, next) => {
   let username = req.body.username;
   let password = req.body.password;
 
-  let baseSQL = "SELECT username,password FROM users WHERE username=? AND password=?;";
-  db.execute(baseSQL, [username, password])
+  let baseSQL = "SELECT id,username,password FROM users WHERE username=?;";
+  let userId;
+  db.execute(baseSQL, [username])
   .then(([results, fields]) => {
     if (results && results.length == 1) {
+      let hashedPassword = results[0].password;
+      userId = results[0].id;
+      return bcrypt.compare(password, hashedPassword);
+    } else {
+      throw new UserError("invalid username and/or password", "/login", 200);
+    }
+  })
+  .then((passwordsMatched) => {
+    if (passwordsMatched) {
       successPrint(`User ${username} is logged in`);
+      req.session.username = username;
+      req.session.userId = userId;
       res.locals.logged = true;
-      res.render('index');
-      //res.redirect('/');
+      req.flash('success','You have been successfully logged in!');
+      res.redirect("/");
     } else {
       throw new UserError("Invalid username and/or password", "/login", 200);
     }
@@ -71,6 +85,7 @@ router.post('/login', (req, res, next) => {
     errorPrint("user login failed");
     if (err instanceof UserError) {
       errorPrint(err.getMessage());
+      req.flash('error', err.getMessage());
       res.status(err.getStatus());
       res.redirect('/login');
     } else {
@@ -78,4 +93,18 @@ router.post('/login', (req, res, next) => {
     }
   })
 })
+
+router.post('/logout', (req, res, next) => {
+  req.session.destroy((err) => {
+    if (err) {
+      errorPrint('Session could not be destroyed.');
+      next(err);
+    } else {
+      successPrint('Session was destroyed.');
+      res.clearCookie('csid');
+      res.json({status:"OK", message:"user is logged out"});
+    }
+  });
+})
+
 module.exports = router;
