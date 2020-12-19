@@ -25,5 +25,7 @@ Link: localhost:3000
 ## Run Instructions
 1. npm start
 
-Extra Info:
+Extra Info (will go over in demo too):
 My database contains some images/info that wouldn't pass the validation by the end of the project, and are there for convenience of testing. For example, some images have wrong thumbnail sizes since they're before thumbnail resize was finalized, and username "rb" exists as a registered user despite "rb" being an invalid name, as that was the test name I made in the very beginning. This will be reflected in my video.
+
+Also, there will be some "missing images" in my posts, these are posts I made with different cloned repos while I was testing the build/run directions with fresh clones, I didn't re-push some of them so the images got lost.
