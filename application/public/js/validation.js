@@ -24,27 +24,8 @@ submitButton.onclick = function(event) {
         event.preventDefault();
     }
 }
-
-function passwordCheck(pass) {
-    var x = false;
-    for (var i = 0; i < pass.length; i++) {
-        if (/^[A-Z]+$/.test(pass.charAt(i))) {
-            //alert("PASS CAPITAL");
-            for (var n = 0; n < pass.length; n++) {
-                if (/^[0-9]+$/.test(pass.charAt(n))) {
-                   //alert("PASS NUMBER");
-                    x = true;
-                }
-            }
-        }
-    }
-    if (!/[/*-+!@#$^&*]/g.test(pass)) {
-        //alert("NO SPECIAL");
-        x = false;
-    }
-    return x;
-}
 */
+
 function setFlashMessageFadeOut(flashMessageElement) {
     setTimeout(() => {
         let currentOpacity = 1.0;
@@ -59,14 +40,18 @@ function setFlashMessageFadeOut(flashMessageElement) {
     }, 4000);
 }
 
-function addFlashFromFrontEnd(message) {
+function addFlashFromFrontEnd(message, status) {
     let flashMessageDiv = document.createElement('div');
     let innerFlashDiv = document.createElement('div');
     let innerTextNode = document.createTextNode(message);
     innerFlashDiv.appendChild(innerTextNode);
     flashMessageDiv.appendChild(innerFlashDiv);
     flashMessageDiv.setAttribute('id', 'flash-message');
-    innerFlashDiv.setAttribute('class', 'alert alert-success');
+    if (status == "danger") {
+        innerFlashDiv.setAttribute('class', 'alert alert-danger');
+    } else {
+        innerFlashDiv.setAttribute('class', 'alert alert-success');
+    }
     document.getElementsByTagName('body')[0].appendChild(flashMessageDiv);
     setFlashMessageFadeOut(flashMessageDiv);
 }

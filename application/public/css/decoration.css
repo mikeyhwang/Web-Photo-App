@@ -9,6 +9,78 @@ header {
     margin-top:5px;
 }
 
+#image-title {
+    position: relative;
+    justify-content: center;
+    margin-bottom: 3px;
+    margin-top: 3px;
+    left: 50%;
+    transform:translate(-50%, 0);
+    
+}
+
+.actual-comments {
+    display:grid;
+    grid-template-rows: 0.3fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    max-width: 100%;
+    border: 2px solid Grey;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    grid-template-areas:
+    "author created"
+    "comment comment";
+}
+
+.author-text {
+    grid-area: author;
+    justify-self: start;
+    color:blue;
+}
+
+.comment-text {
+    grid-area: comment;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 65px;
+    min-height: 65px;
+
+}
+
+.date-posted {
+    grid-area: created;
+    justify-self: end;
+}
+
+#image-post-image {
+    max-width: 100%;
+}
+
+#post-container {
+    grid-area: content;
+    display: grid;
+    grid-gap: 0.2rem;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "content";
+}
+
+#comment-box {
+    display: grid;
+    width: 358px;
+    grid-area: comments;
+    grid-template-rows: auto 75px;
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+    grid-template-areas: 
+    "messages"
+    "comment-box";
+    max-height: 80vh;
+}
+
+#comments {
+    justify-self: stretch;
+}
 .card {
     background-color:grey;
     font-family: Arial, Helvetica, sans-serif;
@@ -46,7 +118,7 @@ header {
     padding:0;
 }
 
-nav {
+#nav-bar {
     text-align: center;
     background-color:grey;
 }
@@ -142,7 +214,7 @@ button {
     box-shadow: 3px 3px 3px lightgrey;
 }
 
-#anchor-buttons, #home-button, #login-button, #post-button {
+#anchor-buttons, #home-button, #login-button, #post-button, #comment-button {
     border:1px solid black;
     color: black;
     background-color: lightgrey;
@@ -150,9 +222,15 @@ button {
     padding:5px;
     border-radius: 0.4rem;
     box-shadow: 3px 3px 3px lightgrey;
+    justify-self: center;
+    
 }
 
-button:hover {
+#comment-button {
+    padding:0px;
+}
+
+button:hover, #comment-button.hover {
     color: black;
     background-color: lightblue;
 }
