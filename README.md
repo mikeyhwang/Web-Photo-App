@@ -19,9 +19,11 @@ Please follow the instructions below and fill in the information requested when 
 # Build/Run Instructions
 
 ## Build Instructions
-1. steps here
-2. steps here
+1. navigate into application folder
+2. npm install
 
 ## Run Instructions
-1. steps here
-2. steps here 
+1. npm start
+
+Extra Info:
+My database contains some images/info that wouldn't pass the validation by the end of the project, and are there for convenience of testing. For example, some images have wrong thumbnail sizes since they're before thumbnail resize was finalized, and username "rb" exists as a registered user despite "rb" being an invalid name, as that was the test name I made in the very beginning. This will be reflected in my video.
